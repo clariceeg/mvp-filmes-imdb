@@ -89,7 +89,7 @@ Usei regras de filtragem alinhadas ao objetivo para impedir que registros sem g�
 Conferi a quantidade final de 300 filmes e agrupei primaryTitle para procurar nomes repetidos; nessa seleção, a contagem de títulos com mais de um registro foi 0. Também foram apresentados os resultados por período. Essa verificação de nome repetido não equivale a uma avaliação completa de duplicidade pelo identificador tconst.
 <img width="1347" height="703" alt="image" src="https://github.com/user-attachments/assets/d688437f-4ec6-4039-85dd-214cf79f2551" />
 
-Limitação da verificação: o notebook ainda não registra uma medição sistemática da proporção de nulos e valores vazios em cada coluna bruta, nem um levantamento de valores extremos. Portanto, não afirmo que todos os atributos de origem estejam completos ou sem outliers. Antes da entrega, pretendo documentar essas contagens ou, caso não seja possível, manter esta limitação explícita na autoavaliação.
+Limitação da verificação: o notebook ainda não registra uma medição sistemática da proporção de nulos e valores vazios em cada coluna bruta, nem um levantamento de valores extremos. Portanto, não afirmo que todos os atributos de origem estejam completos ou sem outliers.
 
 ## Análise de Dados
 
