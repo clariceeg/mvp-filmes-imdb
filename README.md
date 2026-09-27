@@ -33,14 +33,40 @@ Information courtesy of IMDb (https://www.imdb.com). Used with permission.
 
 O campo tconst identifica os títulos nos dois arquivos e permite relacioná-los. Os dados são fornecidos em arquivos TSV compactados. O código lê a primeira linha como cabeçalho e usa tabulação (\t) como separador.
 
+
 ### Armazenamento na nuvem
 
 Baixei os dois arquivos da página de datasets do IMDb e os enviei ao volume /Volumes/mvp_filmes_imdb/default/imdb_raw/, no Databricks. O notebook lê os arquivos desse volume e executa as transformações no ambiente de nuvem. O volume conserva os dados de entrada em seu formato original.
-Evidência a inserir: captura de tela do volume imdb_raw exibindo os dois arquivos. Salvar em evidencias/arquivos-brutos.png e substituir esta nota por ![Arquivos brutos no volume do Databricks](evidencias/arquivos-brutos.png).
+<img width="1051" height="231" alt="image" src="https://github.com/user-attachments/assets/caa25cdc-2dbc-4cda-b240-b80f664d137b" />
 
 
 
 ## Modelagem e Catálogo de Dados
+
+Usei um modelo de duas tabelas finais, adequado às duas perguntas do projeto. catalogo_filmes contém um registro por filme selecionado; frequencia_generos contém uma linha por combinação de período e gênero. Os dois conjuntos derivam da junção dos arquivos brutos pelo identificador tconst. O primeiro permite consultar os títulos; o segundo, comparar os gêneros dos títulos escolhidos. As tabelas ficam no catálogo mvp_filmes_imdb, esquema default, e são gravadas pelo notebook.
+
+### mvp_filmes_imdb.default.catalogo_filmes
+| Campo | Tipo salvo | Significado, valores e origem |
+| --- | --- | --- |
+| `primaryTitle` | texto (`string`) | Nome principal do filme; vem de `title.basics`. A seleção final foi verificada quanto a títulos repetidos. |
+| `startYear` | texto (`string`) | Ano de lançamento vindo de `title.basics`; convertido para inteiro nas condições de filtragem. Faixa selecionada: 2000 a 2026. |
+| `genres` | texto (`string`) | Um ou mais gêneros do IMDb, separados por vírgula; valores ausentes representados por `\N` foram descartados. |
+| `averageRating` | texto (`string`) | Nota média vinda de `title.ratings`; convertida para número decimal na condição de filtragem. Mínimo selecionado: 7,0. |
+| `numVotesNumeric` | inteiro longo (`long`) | Número de votos, criado a partir de `numVotes` por conversão para `BIGINT`; usado para ordenar cada período. |
+
+
+### mvp_filmes_imdb.default.frequencia_generos
+| Campo | Tipo salvo | Significado, valores e origem |
+| --- | --- | --- |
+| `genre` | texto (`string`) | Gênero individual obtido da divisão de `genres` por vírgula e expansão da lista. |
+| `count` | inteiro longo (`bigint`) | Quantidade de filmes selecionados associados ao gênero no período; é uma frequência, não a soma de votos. |
+| `periodo` | texto (`string`) | Faixa de lançamento: `2000-2009`, `2010-2019` ou `2020-2026`. |
+
+Na tabela de frequência, um filme classificado em três gêneros contribui uma vez para cada um. Por isso, a soma das frequências de um período pode ultrapassar 100. Para as análises futuras, seria útil manter tconst na tabela de filmes como identificador estável; neste MVP, ele foi retirado da apresentação final após a verificação de títulos repetidos na seleção.
+
+
+
+
 
 ## Pipeline de Dados
 
