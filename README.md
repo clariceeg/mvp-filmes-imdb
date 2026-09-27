@@ -40,7 +40,6 @@ Baixei os dois arquivos da página de datasets do IMDb e os enviei ao volume /Vo
 <img width="1051" height="231" alt="image" src="https://github.com/user-attachments/assets/caa25cdc-2dbc-4cda-b240-b80f664d137b" />
 
 
-
 ## Modelagem e Catálogo de Dados
 
 Usei um modelo de duas tabelas finais, adequado às duas perguntas do projeto. catalogo_filmes contém um registro por filme selecionado; frequencia_generos contém uma linha por combinação de período e gênero. Os dois conjuntos derivam da junção dos arquivos brutos pelo identificador tconst. O primeiro permite consultar os títulos; o segundo, comparar os gêneros dos títulos escolhidos. As tabelas ficam no catálogo mvp_filmes_imdb, esquema default, e são gravadas pelo notebook.
@@ -57,7 +56,6 @@ Usei um modelo de duas tabelas finais, adequado às duas perguntas do projeto. c
 <img width="1340" height="599" alt="image" src="https://github.com/user-attachments/assets/e55a47e3-447a-433e-8063-0aa9b7eb4c8e" />
 
 
-
 ### mvp_filmes_imdb.default.frequencia_generos
 | Campo | Tipo salvo | Significado, valores e origem |
 | --- | --- | --- |
@@ -68,14 +66,21 @@ Usei um modelo de duas tabelas finais, adequado às duas perguntas do projeto. c
 <img width="1355" height="601" alt="image" src="https://github.com/user-attachments/assets/7e39b42d-7e0a-4214-88be-9e2ee4fe133f" />
 
 
-
 Na tabela de frequência, um filme classificado em três gêneros contribui uma vez para cada um. Por isso, a soma das frequências de um período pode ultrapassar 100. Para as análises futuras, seria útil manter tconst na tabela de filmes como identificador estável; neste MVP, ele foi retirado da apresentação final após a verificação de títulos repetidos na seleção.
 
 
-
-
-
 ## Pipeline de Dados
+
+Implementei o fluxo em um único [notebook PySpark](./MVP_FILMES_IMDb.ipynb), com estas etapas:
+
+1. Extração: leitura de title.basics.tsv.gz e title.ratings.tsv.gz do volume do Databricks como TSV com cabeçalho.
+2. Integração: junção interna dos arquivos por tconst, associando atributos do filme à nota e ao número de votos.
+3. Tratamento: manutenção de titleType = 'movie', exclusão de genres = '\N', filtragem de anos entre 2000 e 2026 após conversão para inteiro e de notas a partir de 7,0 após conversão para decimal. O número de votos é convertido para BIGINT em numVotesNumeric.
+4. Seleção: divisão nos períodos 2000–2009, 2010–2019 e 2020–2026; ordenação decrescente de numVotesNumeric e limite de 100 filmes para cada período; união dos três conjuntos.
+5. Agregação: separação da lista de gêneros, criação de um registro por filme e gênero e contagem por gênero em cada período.
+6. Carga: gravação das tabelas catalogo_filmes e frequencia_generos com saveAsTable e modo overwrite. A leitura posterior das tabelas confirma sua disponibilidade para consulta no ambiente.
+
+Os arquivos no volume representam a entrada bruta; os DataFrames do notebook reúnem os dados tratados; as duas tabelas gravadas são as saídas prontas para as consultas do MVP. A gravação em modo overwrite permite reconstruir as saídas ao executar novamente o notebook, usando a versão dos arquivos de entrada disponível naquele momento.
 
 ## Qualidade de Dados
 
