@@ -93,4 +93,24 @@ Limitação da verificação: o notebook ainda não registra uma medição siste
 
 ## Análise de Dados
 
+### Filmes selecionados
+A primeira pergunta foi respondida pela tabela catalogo_filmes: selecionei os 100 filmes com mais votos em cada período, desde que tivessem nota média igual ou superior a 7,0 e gênero declarado. Assim, o catálogo reúne 300 filmes. A ordenação pelo número de votos prioriza títulos com maior participação nas avaliações do IMDb; ela não mede vendas, preferência dos clientes da loja ou qualidade objetiva das obras.
+<img width="1358" height="797" alt="image" src="https://github.com/user-attachments/assets/2eb60ad3-a601-48e7-bb32-913840c7679e" />
+
+### Frequência dos gêneros
+A segunda pergunta foi respondida pela tabela frequencia_generos. Entre os 100 filmes escolhidos em cada período, os gêneros mais frequentes foram:
+| Período | Gênero mais frequente | Filmes associados ao gênero |
+| --- | --- | ---: |
+| 2000–2009 | Drama | 45 |
+| 2010–2019 | Action (Ação) | 44 |
+| 2020–2026 | Drama | 49 |
+Drama liderou em dois dos três períodos analisados, enquanto Action liderou de 2010 a 2019. A contagem corresponde à presença do gênero entre os títulos selecionados, e não ao total de votos recebidos pelos filmes daquele gênero. Como os filmes podem ter mais de um gênero, os totais das categorias não formam uma divisão exclusiva dos 100 filmes. O recorte 2020–2026 contém dados disponíveis até a data da coleta e pode mudar com novas atualizações do IMDb.
+
+<img width="328" height="438" alt="image" src="https://github.com/user-attachments/assets/8cb17c0e-7248-423d-8d27-c9b925befa40" /> <img width="329" height="373" alt="image" src="https://github.com/user-attachments/assets/6e1eff72-5a33-425a-98a2-75b7fd02f40d" /> <img width="333" height="371" alt="image" src="https://github.com/user-attachments/assets/3482d97c-8ee8-40dd-b653-475f51c11b8f" />
+
+
+
+
+
+
 ## Autoavaliação
