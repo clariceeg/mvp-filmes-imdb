@@ -109,9 +109,7 @@ Drama liderou em dois dos três períodos analisados, enquanto Action liderou de
 
 <img width="328" height="438" alt="image" src="https://github.com/user-attachments/assets/8cb17c0e-7248-423d-8d27-c9b925befa40" /> <img width="329" height="373" alt="image" src="https://github.com/user-attachments/assets/6e1eff72-5a33-425a-98a2-75b7fd02f40d" /> <img width="333" height="371" alt="image" src="https://github.com/user-attachments/assets/3482d97c-8ee8-40dd-b653-475f51c11b8f" />
 
-
-
-
-
-
 ## Autoavaliação
+
+Consegui realizar o fluxo principal planejado: coletar dois arquivos do IMDb, armazená-los na nuvem, combinar e filtrar os registros, selecionar filmes por período, contar gêneros e persistir as duas tabelas finais. As consultas retornaram 300 filmes, distribuídos em 100 por período. Trabalhar com tipos inicialmente lidos como texto e reconstruir as variáveis do notebook após mudanças de sessão foram dificuldades encontradas durante a implementação; resolvi esses pontos com conversões explícitas e uma sequência de células que pode ser executada desde o início.
+Reconheço como limite a análise de qualidade ainda incompleta para todos os campos dos arquivos de origem. Também não analisei vendas ou preferências de clientes, pois esses dados não fazem parte dos conjuntos utilizados. Como evolução, eu incluiria verificações automatizadas de completude e unicidade por tconst, armazenaria tipos numéricos definitivos nas tabelas finais, documentaria a data de atualização dos arquivos e compararia a seleção com dados próprios da loja, caso estivessem disponíveis e licenciados para esse fim.
