@@ -54,6 +54,9 @@ Usei um modelo de duas tabelas finais, adequado às duas perguntas do projeto. c
 | `averageRating` | texto (`string`) | Nota média vinda de `title.ratings`; convertida para número decimal na condição de filtragem. Mínimo selecionado: 7,0. |
 | `numVotesNumeric` | inteiro longo (`long`) | Número de votos, criado a partir de `numVotes` por conversão para `BIGINT`; usado para ordenar cada período. |
 
+<img width="1340" height="599" alt="image" src="https://github.com/user-attachments/assets/e55a47e3-447a-433e-8063-0aa9b7eb4c8e" />
+
+
 
 ### mvp_filmes_imdb.default.frequencia_generos
 | Campo | Tipo salvo | Significado, valores e origem |
@@ -61,6 +64,10 @@ Usei um modelo de duas tabelas finais, adequado às duas perguntas do projeto. c
 | `genre` | texto (`string`) | Gênero individual obtido da divisão de `genres` por vírgula e expansão da lista. |
 | `count` | inteiro longo (`bigint`) | Quantidade de filmes selecionados associados ao gênero no período; é uma frequência, não a soma de votos. |
 | `periodo` | texto (`string`) | Faixa de lançamento: `2000-2009`, `2010-2019` ou `2020-2026`. |
+
+<img width="1355" height="601" alt="image" src="https://github.com/user-attachments/assets/7e39b42d-7e0a-4214-88be-9e2ee4fe133f" />
+
+
 
 Na tabela de frequência, um filme classificado em três gêneros contribui uma vez para cada um. Por isso, a soma das frequências de um período pode ultrapassar 100. Para as análises futuras, seria útil manter tconst na tabela de filmes como identificador estável; neste MVP, ele foi retirado da apresentação final após a verificação de títulos repetidos na seleção.
 
