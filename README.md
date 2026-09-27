@@ -20,7 +20,7 @@ Uma loja de produtos culturais e entretenimento, que vende filmes, livros e jogo
 
 ### Fonte e condições de uso
 
-Usei os conjuntos IMDb Non-Commercial Datasets, disponibilizados para uso pessoal e não comercial. O projeto tem finalidade acadêmica; o cenário de uso pela loja não representa autorização para utilizar esses dados comercialmente. Uma aplicação comercial real exigiria uma licença apropriada. Os arquivos brutos não foram publicados neste repositório.
+Usei os conjuntos IMDb Non-Commercial Datasets em https://www.imdb.com/interfaces/, disponibilizados para uso pessoal e não comercial. O projeto tem finalidade acadêmica; o cenário de uso pela loja não representa autorização para utilizar esses dados comercialmente. Uma aplicação comercial real exigiria uma licença apropriada. Os arquivos brutos não foram publicados neste repositório.
 
 Information courtesy of IMDb (https://www.imdb.com). Used with permission.
 
