@@ -24,7 +24,7 @@ Usei os conjuntos IMDb Non-Commercial Datasets, disponibilizados para uso pessoa
 
 Information courtesy of IMDb (https://www.imdb.com). Used with permission.
 
-### Condições de uso dos dados do IMDb.
+### Arquivos de origem
 
 | Arquivo | Estrutura e finalidade |
 | --- | --- |
@@ -83,6 +83,13 @@ Implementei o fluxo em um único [notebook PySpark](./MVP_FILMES_IMDb.ipynb), co
 Os arquivos no volume representam a entrada bruta; os DataFrames do notebook reúnem os dados tratados; as duas tabelas gravadas são as saídas prontas para as consultas do MVP. A gravação em modo overwrite permite reconstruir as saídas ao executar novamente o notebook, usando a versão dos arquivos de entrada disponível naquele momento.
 
 ## Qualidade de Dados
+
+Usei regras de filtragem alinhadas ao objetivo para impedir que registros sem gênero declarado ou fora dos critérios de ano e nota aparecessem na seleção. A conversão try_cast(startYear AS INT) evita tratar texto inválido como ano; try_cast(averageRating AS DOUBLE) faz o mesmo para a nota; try_cast(numVotes AS BIGINT) cria um campo numérico para a ordenação. Valores que não puderem ser convertidos para ano ou nota não atendem aos respectivos filtros.
+
+Conferi a quantidade final de 300 filmes e agrupei primaryTitle para procurar nomes repetidos; nessa seleção, a contagem de títulos com mais de um registro foi 0. Também foram apresentados os resultados por período. Essa verificação de nome repetido não equivale a uma avaliação completa de duplicidade pelo identificador tconst.
+<img width="1347" height="703" alt="image" src="https://github.com/user-attachments/assets/d688437f-4ec6-4039-85dd-214cf79f2551" />
+
+Limitação da verificação: o notebook ainda não registra uma medição sistemática da proporção de nulos e valores vazios em cada coluna bruta, nem um levantamento de valores extremos. Portanto, não afirmo que todos os atributos de origem estejam completos ou sem outliers. Antes da entrega, pretendo documentar essas contagens ou, caso não seja possível, manter esta limitação explícita na autoavaliação.
 
 ## Análise de Dados
 
